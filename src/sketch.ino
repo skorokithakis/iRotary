@@ -226,7 +226,7 @@ void checkStatus() {
 #if defined(GSM)
     byte status;
 
-    if (millis() - 2000 > statusCheckTime) {
+    if (millis() - 1000 > statusCheckTime) {
         statusCheckTime = millis();
         Serial.println("Checking status...");
 
