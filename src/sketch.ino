@@ -286,7 +286,7 @@ void loop() {
 
         // Hax. This increases the accuracy, I have no idea why.
         delay(3);
-    } else if (state == IDLE) {
+    } else if (state == IDLE || state == RINGING) {
         checkStatus();
     }
 
