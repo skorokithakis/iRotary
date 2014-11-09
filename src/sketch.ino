@@ -76,12 +76,18 @@ void setup() {
 // Events
 //
 void buttonFullPressed() {
-    if (lastNumber == "") {
-        Serial.println("No number to dial.");
+    if (number == "") {
+        if (lastNumber == "") {
+            Serial.println("No number to dial.");
+        } else {
+            Serial.print("Redialing last number: ");
+            Serial.println(lastNumber);
+            dialNumber(lastNumber);
+        }
     } else {
-        Serial.print("Redialing last number: ");
-        Serial.println(lastNumber);
-        dialNumber(lastNumber);
+        Serial.print("Force-dialing number: ");
+        Serial.println(number);
+        dialNumber(number);
     }
 }
 
@@ -216,6 +222,7 @@ void dialNumber(String number) {
 #endif
     lastNumber = number;
     state = IN_CALL;
+    number = "";
 }
 
 
@@ -272,7 +279,6 @@ void readDialing() {
 
             if (number.length() == NUMBER_LENGTH) {
                 dialNumber(number);
-                number = "";
             }
         }
     }
